@@ -1,46 +1,46 @@
 ---
-title: "Wallets"
+title: "Carteiras"
 date: 2018-04-25T10:31:55-04:00
 weight: 3
 draft: false
 ---
 
-* [Start the keosd background process]({{<ref "#keosd" >}})
-* [Create a wallet]({{<ref "#create" >}})
-* [Wallets need to be opened]({{<ref "#open" >}})
-* [Unlocking your wallet]({{<ref "#unlock" >}})
-* [Adding keys]({{<ref "#AddingKeys" >}})
-* [Working with multiple wallets]({{<ref "#MultipleWallets" >}})
+* [Iniciar o processo do keosd em background] ({{<ref "#keosd">}})
+* [Criar uma carteira] ({{<ref "#create">}})
+* [Carteiras precisam ser abertas] ({{<ref "#open">}})
+* [Desbloqueando sua carteira] ({{<ref "#unlock">}})
+* [Adicionando chaves] ({{<ref "#AddingKeys">}})
+* [Trabalhando com várias carteiras] ({{<ref "#MultipleWallets">}})
 
 
 
 
-### Introduction
+### Introdução
 
-There are currently two wallet options available:
+Atualmente, existem duas opções de carteira disponíveis:
 
-* A plugin that you're able to start with the nodeos server.
-* A standalone daemon that can be run on a seperate server, independent from the nodeos server. **<< We're going to be using this option**
+* Um plugin que você pode iniciar com o servidor nodeos.
+* Um daemon independente que pode ser executado em um servidor separado, independente do servidor nodeos. ** << Vamos usar esta opção **
 
-> **DO NOT SUPPLY THE FOLLOWING WHEN STARTING THE nodeos server:** --plugin eosio::wallet_api_plugin
+> ** NÃO FORNEÇA O SEGUINTE AO INICIAR O SERVIDOR NODEOS: ** --plugin eosio:: wallet_api_plugin
 
-### Important concept
+### Conceitos importantes
 
-Many people involved in Crypto think about a wallet as something that stores "Tokens". This is not the correct way of thinking about the wallet.
+Muitas pessoas envolvidas em Crypto pensam em uma carteira como algo que armazena "Tokens". Esta não é a maneira correta de se pensar sobre a carteira.
 
-![Coins are not stored it the wallet](images/NoCoins.png)
+![Moedas não são armazenadas na carteira] (images/NoCoins.png)
 
-The wallet is just a place where key pairs are stored.
+A carteira é apenas um lugar onde os pares de chaves são armazenados.
 
-The image below illustrates that the keosd daemon can have multiple wallets and each wallet can hold multiple public+private key pairs
+A imagem abaixo ilustra que o daemon keosd pode ter múltiplas carteiras e cada carteira pode conter vários pares de chaves públicas + privadas
 
-![Coins are not stored it the wallet](images/keosd.png)
+![Moedas não são armazenadas na carteira] (images/keosd.png)
 
-### 1. Start the keosd background process {#keosd}
+### 1. Inicie o processo do keosd no background {#keosd}
 
-The wallet we'll be discussing is a daemon called keosd
+A carteira que vamos discutir é um daemon chamado keosd
 
-To run the wallet daemon simply run the executable. Note that if you're using docker images and are following the [docker instructions](../software/docker/#Running), then you already have a docker container running the wallet daemon. 
+Para executar o daemon da carteira, basta iniciar o executável. Observe que, se você estiver usando imagens do docker e estiver seguindo as [instruções do docker] (../software/docker/#Running), já terá um contêiner do Docker executando o daemon de carteira. 
 
 ```
 cd eos/build/programs/keosd/
@@ -48,14 +48,14 @@ cd eos/build/programs/keosd/
 ```
 
 {{% notice warning %}}
-By default keosd runs on port 8888. This is the same port the nodeos application uses by default, so if you're running this on the same machine you'll need to supply the something like this to run on port 8899  "./keosd --http-server-address=localhost:8899"
+Por padrão, o keosd é executado na porta 8888. Esta é a mesma porta que o aplicativo nodeos usa por padrão, portanto, se você estiver executando isso na mesma máquina, precisará fornecer algo assim para ser executado na porta 8899 "./keosd --http-server-address=localhost:8899"
 {{% /notice %}}
 
-If you are running the server for the 1st time, you need to auto generate an INI file in the default "config" folder  ~/eosio-wallet/config.ini
+Se você está executando o servidor pela primeira vez, você precisa gerar automaticamente um arquivo INI na pasta padrão "config" ~/eosio-wallet/config.ini
 
-### 2. Create a wallet {#create}
+### 2. Criar uma carteira {#create}
 
-Let's create a default wallet: 
+Vamos criar uma carteira padrão: 
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet create
@@ -67,16 +67,16 @@ Without password imported keys will not be retrievable.
 ```
 
 {{% notice tip %}}
-Save this password somewhere safe and label it as: DEFAULT WALLET PASSWORD 
+Salve esta senha em algum lugar seguro e rotule-a como: SENHA DA WALLET PADRÃO 
 {{% /notice %}}
 
-By default wallets are stored in ~/eosio-wallet/default.wallet. If you're following the docker instructions and you'd like to SSH into your wallet docker container to explore the file system and see this file, you can run the following from a new command prompt: "docker exec -it wallet bash"
+Por padrão, as carteiras são armazenadas em ~/eosio-wallet/default.wallet. Se você estiver seguindo as instruções do docker e quiser fazer o SSH no contêiner docker da carteira para explorar o sistema de arquivos e ver esse arquivo, poderá executar o seguinte em um novo prompt de comando: "docker exec -it wallet bash"
 
 {{% notice note %}}
-Note that the EOS master key has been added to this wallet for you. Don't be confused by this, all you have done to this point is create a wallet - and you now have a password to unlock that wallet. 
+Note que a chave mestra EOS foi adicionada a esta carteira para você. Não fique confuso com isso, tudo que você fez até agora é criar uma carteira - e agora você tem uma senha para desbloquear essa carteira. 
 {{% /notice %}}
 
-Let's take a look at what's in the wallet.
+Vamos dar uma olhada no que está na carteira.
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet keys
@@ -87,20 +87,20 @@ $cleos --wallet-url http://wallet:5555 wallet keys
 ]
 ```
 
-As you can see, there is one key pair in your newly created wallet. This is the master keypair for the sole initial account, **eosio**
+Como você pode ver, há um par de chaves em sua carteira recém-criada. Este é o par de chaves mestre para a única conta inicial, ** eosio **
 
-**Don't confuse the above master key with keys that you'll be adding in future**
+** Não confunda a chave mestra acima com as chaves que você adicionará no futuro **
 
-### 3. Wallets need to be opened {#open}
+### 3. Carteiras precisam ser abertas {#open}
 
-Something that can be a little confusing is that wallets that are not "open" are not listed when using the "list" command. Here's an example:
+Algo que pode ser um pouco confuso é que as carteiras que não estão "abertas" não são listadas quando se usa o comando "list". Aqui está um exemplo:
 
-Let's start by killing and restarting the keosd process.
+Vamos começar matando e reiniciando o processo keosd.
 ```
 $ pkill keosd
 $ ./keosd
 ```
-We can now see that using the list command returns nothing ... where'd my wallet go?
+Agora podemos ver que usar o comando list não retorna nada ... para onde minha carteira foi?
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet list
@@ -109,7 +109,7 @@ Wallets:
 []
 ```
 
-The catch is, the wallet needs to be "opened" before it'll show up in your list of wallets (something that can be improved in my opinion)
+O problema é que a carteira precisa ser "aberta" antes de aparecer na sua lista de carteiras (algo que pode ser melhorado na minha opinião)
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet open
@@ -123,18 +123,18 @@ Wallets:
 ```
 
 
-### 4. Unlocking your wallet {#unlock}
+### 4. Desbloqueando sua carteira {#unlock}
 
-Simply having your wallet open doesn't do much for you, you now need to UNLOCK the wallet.
+Simplesmente ter sua carteira aberta não adianta muito, agora você precisa DESBLOQUEAR a carteira.
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet unlock
 
-#{You'll need to provide your password here}
+#{Você precisará fornecer sua senha aqui}
 password: Unlocked: default
 ```
 
-Note how when I list the wallet now, there's a * next to the name, indicating that it's been unlocked.
+Note como quando eu listo a carteira agora, há um * ao lado do nome, indicando que ele foi desbloqueado.
 ```
 $cleos --wallet-url http://wallet:5555 wallet list
 Wallets:
@@ -144,17 +144,17 @@ Wallets:
 ```
 
 {{% notice note %}}
-Note that when you created your wallet using the "./cleos wallet create" in step 2 above, your wallet was left in an Open and Unlocked state. What tends to happen is things work as you're following a tutorial, but things don't work after a reboot. If you don't understand this need to Open and then unlock the wallet before it can be used, you'll be confused at some point.
+Note que quando você criou sua carteira usando o "./cleos wallet create" na etapa 2 acima, sua carteira foi deixada em um estado Aberto e Desbloqueado. O que tende a acontecer é que as coisas funcionam enquanto você está seguindo um tutorial, mas não funcionam depois de uma reinicialização. Se você não entender essa necessidade de abrir e desbloquear a carteira antes que ela possa ser usada, você ficará confuso em algum momento.
 {{% /notice %}}
 
 
-### 5. Adding keys {#AddingKeys}
+### 5. Adicionando chaves {#AddingKeys}
 
-As detailed in the [Accounts](../accounts/] section, each account has two permissions the **owner** and the **active** permission.
+Conforme detalhado na seção [Contas] (../ accounts /), cada conta tem duas permissões, o ** owner ** e o ** active **.
 
-So in most cases you'll want to create two keys so that you can associate one key with each permission (more on this later).
+Portanto, na maioria dos casos, você desejará criar duas chaves para poder associar uma chave a cada permissão (mais sobre isso posteriormente).
 
-The "create key" command below just prints a key pair to screen. It's not stored, so you'll need to import these keys into a wallet.
+O comando "create key" abaixo apenas imprime um par de chaves para a tela. Não é armazenado, portanto, você precisará importar essas chaves para uma carteira.
 
 ```
 $cleos create key
@@ -167,7 +167,7 @@ Private key: 5KgcXVKU7Lfs2iFpAP1Aqiz3SEZcmbLuh6y9Lvsi4bYcFwDUVBQ
 Public key: EOS5tJQSKKeiTUZEutPo9SWUoCeovV43kWxGuW21K663frcHw7GnN
 ```
 
-Now let's import the keys into our wallet.
+Agora vamos importar as chaves para nossa carteira.
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet import 5JKrSzsuztAPvTzghi9VU4522sT49SeE3XVHbB8HsfC3ikifJRf
@@ -178,7 +178,7 @@ $cleos --wallet-url http://wallet:5555 wallet import 5KgcXVKU7Lfs2iFpAP1Aqiz3SEZ
 imported private key for: EOS5tJQSKKeiTUZEutPo9SWUoCeovV43kWxGuW21K663frcHw7GnN
 ```
 
-If we look at our wallet now, we can see 3 public keys. The single master key that was added when we created the wallet and the two keys that we just imported. 
+Se olharmos para a nossa carteira agora, podemos ver 3 chaves públicas. A única chave mestra que foi adicionada quando criamos a carteira e as duas chaves que acabamos de importar. 
 
 ```
 ./cleos --wallet-url http://wallet:5555 wallet keys
@@ -189,7 +189,7 @@ If we look at our wallet now, we can see 3 public keys. The single master key th
 ]
 ```
 
-We can query for the key pairs as well, this request will ask for the wallet password.
+Podemos realizar um query pelos pares de chaves também, essa solicitação solicitará a senha da carteira.
 
 ```
 ./cleos --wallet-url http://wallet:5555 wallet private_keys
@@ -201,17 +201,17 @@ password:
     "EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV",
     "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
   ],[
-    "EOS7EzCEh94uN2k59wznzsZDcFVnpZ3wuiYvPSbb8bXDS6U7twKQF",
+    "EOS7EzCEh94uN2k59wznzsZDcFVnpZ3wuiYvPSbb8bXDS6U7twKQF"
     "5JKrSzsuztAPvTzghi9VU4522sT49SeE3XVHbB8HsfC3ikifJRf"
   ]
 ]
 ```
 
 {{% notice warning %}}
-As we stated above, it's important to keep track of which key your planning on using for what purpose. When you store your keys, clearly label the keys as per the example below
+Como dissemos acima, é importante saber qual a chave que você planeja usar para qual finalidade. Quando você armazenar suas chaves, identifique claramente as chaves conforme o exemplo abaixo
 {{% /notice %}}
 
-**By labeling our new keys as follows, you'll be a lot less likely to get the keys mixed up as you develop.**
+** Ao rotular nossas novas chaves da seguinte forma, você terá muito menos probabilidade de misturar as chaves à medida que desenvolver.**
 
 ```
 
@@ -225,11 +225,11 @@ As we stated above, it's important to keep track of which key your planning on u
     MyNewAccount active Private Key: "5JKrSzsuztAPvTzghi9VU4522sT49SeE3XVHbB8HsfC3ikifJRf"
 ```
 
-### 6. Working with multiple wallets {#MultipleWallets}
+### 6. Trabalhando com várias carteiras {#MultipleWallets}
 
-The keosd daemon allows you to have multiple wallets.
+O daemon keosd permite que você tenha várias carteiras.
 
-While not covered in detail here, most of the above commands take params allowing you to specify the name of the wallet you want to interact with. Example:
+Embora não seja abordado em detalhes aqui, a maioria dos comandos acima usa parâmetros que permitem especificar o nome da carteira com a qual você deseja interagir. Exemplo:
 
 ```
 $cleos --wallet-url http://wallet:5555 wallet create -n MyTestWallet
@@ -239,9 +239,9 @@ $cleos --wallet-url http://wallet:5555 wallet import 5KgcXVKU7Lfs2iFpAP1Aqiz3SEZ
 https://github.com/EOSIO/eos/wiki/Tutorial-Getting-Started-With-Contracts
 
 
-##### Credits
-The image of the wallet and the keys were used under free license from freepic
+##### Créditos
+A imagem da carteira e chaves foram usadas sob licença livre da freepic
 <a href="https://www.freepik.com/free-vector/flat-key-background_1637044.htm">Image 1</a>
 <a href='https://www.freepik.com/free-vector/dollar-coins_759113.htm'>Image 2</a>
 
-Much of this information can also be found here: https://github.com/EOSIO/eos/wiki/Tutorial-Getting-Started-With-Contracts
+Muitas dessas informações também podem ser encontradas aqui: https://github.com/EOSIO/eos/wiki/Tutorial-Getting-Started-With-Contracts

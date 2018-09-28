@@ -5,19 +5,19 @@ weight: 5
 draft: false
 ---
 
-### 1. Creating your 1st contract
+### 1. Criando seu primeiro contrato
 
 https://github.com/EOSIO/eos/wiki/Tutorial-Getting-Started-With-Contracts
 
--p eosio tells cleos to sign this action with the **active** authority of the eosio account, i.e., to sign the action using the private key for the eosio account that we imported earlier.
+-p eosio informa ao cleos para assinar esta ação com a autoridade **active** da conta eosio, ou seja, para assinar a ação usando a chave privada da conta eosio que importamos anteriormente.
 
 ```
-# If you're using he docker image this is where you'll find the source code for the example contracts. We're going to add another here. 
+# Se você estiver usando a imagem do docker, você encontrará o código-fonte para os contratos de exemplo. Nós vamos adicionar outro aqui. 
 $cd /eos/contracts/hello
 
 ```
 
-In the hello directory create a new file "hello.cpp" with the following contents
+No diretório hello, crie um novo arquivo "hello.cpp" com o seguinte conteúdo
 
 ```
 $vi hello/hello.cpp
@@ -42,12 +42,12 @@ EOSIO_ABI( hello, (hi) )
 
 ```
 
-Now let's compile the C++ into web assembly (.wast file)
+Agora vamos compilar o C ++ em web assembly (arquivo .wast)
 
 ```
 $eosiocpp -o /eos/contracts/hello/hello.wast /eos/contracts/hello/hello.cpp
 
-# The output will look something like this...
+# A saída será algo como...
 In file included from /eos/contracts/hello/hello.cpp:5:
 In file included from /eos/contracts/hello/hello.hpp:5:
 In file included from /usr/local/include/eosiolib/eosio.hpp:7:
@@ -58,17 +58,17 @@ In file included from /usr/local/include/eosiolib/datastream.hpp:9:
 5 warnings generated.  
 
 
-# You can ignore these warnings
+# Você pode ignorar esses avisos
 
 ```
 
-Generate an abi file
+Gerar um arquivo abi
 
 ```
 eosiocpp -g /eos/contracts/hello/hello.abi /eos/contracts/hello/hello.cpp
 ```
 
-Check you should now have a .wast file and a .abi file in the folder. 
+Confirme, você deve ter agora um arquivo .wast e um arquivo .abi na pasta. 
 
 ```
 $ls -1 /eos/contracts/hello/
@@ -79,7 +79,7 @@ hello.wast
 ```
 
 
-### 2. Upload your new contract to your account
+### 2. Carregar seu novo contrato para sua conta
 
 ```
 $cleos --wallet-url http://wallet:5555 -u http://server:7777 set contract mynewaccount /eos/contracts/hello/ -p mynewaccount

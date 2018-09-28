@@ -1,27 +1,27 @@
 ---
-title: "Token contract"
+título: "Contrato Token"
 date: 2018-04-24T09:23:39-04:00
 weight: 6
 draft: false
 ---
 
-### Introduction
-The EOSIO.TOKEN contract comes with the EOSIO software, it is a token standard contract which can handle many different tokens on the one deployed contract. This is similar to Ethereum's ERC20 standard, however, unlike Ethereum where one contract typically handles one ERC20 token. 
+### Introdução
+O contrato EOSIO.TOKEN vem com o software EOSIO, é um contrato padrão de token que pode lidar com muitos tokens diferentes no contrato implementado. Isto é semelhante ao padrão ERC20 da Ethereum e no entanto é diferente da Ethereum, onde um contrato normalmente lida com apenas um token ERC20. 
 
 
-### 1. Loading the Bios Contract
+### 1. Carregando o Contrato Bios
 
 https://github.com/EOSIO/eos/wiki/Tutorial-Getting-Started-With-Contracts
 
--p eosio tells cleos to sign this action with the **active** authority of the eosio account, i.e., to sign the action using the private key for the eosio account that we imported earlier.
+-p eosio informa ao cleos para assinar esta ação com a autoridade ** ativa ** da conta eosio, ou seja, para assinar a ação usando a chave privada da conta eosio que importamos anteriormente.
 
-> If you're using the docker image `/contracts` is the folder where all the contracts are located.
+> Se você estiver usando a imagem docker `/ contracts` é a pasta onde todos os contratos estão localizados.
 
 ```
 $ cleos --wallet-url http://wallet:5555 -u http://server:7777 set contract eosio eosio.bios -p eosio
 ```
 
-`cleos` calls `eosio::setcode` and `eosio::setabi` method
+`cleos` chama os métodos ` eosio::setcode` e `eosio::setabi`
 
 ```
 Reading WAST/WASM from /tmp/build/contracts/eosio.bios/eosio.bios.wast...
@@ -33,7 +33,7 @@ executed transaction: eb4593ca925673d8115f11a7c28bf106b32673a5d725259c8dd6edb533
 ```
 
 
-### 2. Create the eosio.token account and contract. 
+### 2. Criar a conta eosio.token e contrato. 
 
 ```
 $ cleos create key
@@ -77,7 +77,7 @@ executed transaction: 1f06701e85926abbd59a5c236449c27720465b33c62cd09108b8f12482
 #   eosio.token <= eosio.token::create          {"issuer":"eosio","maximum_supply":"1000000000.0000 EOS","can_freeze":0,"can_recall":0,"can_whitelis...
 ```
 
-Create a user called "Bob" and then issue some tokens to Bob
+Crie um usuário chamado "Bob" e emita alguns tokens para Bob
 
 ```
 $ cleos create key
@@ -112,7 +112,7 @@ executed transaction: 2164af30bbfce8ab8b0bf2389a76b80aa3d9dbfef55f81749eb21d8ee6
 #           bob <= eosio.token::transfer        {"from":"eosio","to":"bob","quantity":"100.0000 EOS","memo":"memo"}
 ```
 
-Create a user called "Mary" and then have Bob transfer some of his tokens to Mary. 
+Crie um usuário chamado "Mary" e peça a Bob para transferir alguns dos seus tokens para Mary. 
 
 ```
 $ cleos create key
@@ -145,14 +145,14 @@ executed transaction: 6b2fb84d9e5c9dd13b576ea24ae8d4a244a60a889e601e540369ec179d
 
 ```
 
-### 3. View account balances
+### 3. Visualizar saldos de contas
 ```
 $ cleos get currency balance eosio.token mary
 25.0000 EOS
 ```
 
 
-### 4. Errors
+### 4. Erros
 
 ```
 $ cleos push action eosio.token transfer '[ "bob", "mary", "25.0000 EOS", "m" ]' -p bob
