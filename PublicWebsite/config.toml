@@ -14,7 +14,7 @@ defaultContentLanguageInSubdir= true
   description = "EOSDocs.io - EOS developer documentation"
   author = "Warrick FitzGerald"
   showVisitedLinks = true
-  disableLanguageSwitchingButton = true
+  disableLanguageSwitchingButton = false
   themeVariant = "mine"
 
 
