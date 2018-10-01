@@ -26,4 +26,8 @@ home = [ "HTML", "RSS", "JSON"]
 title = "EOSDocs.io - EOS developer documentation"
 weight = 1
 languageName = "English"
+[Languages.pt]
+title = "EOSDocs.io - Documentação desenvolvedores EOS"
+weight = 2
+languageName = "Português"
 

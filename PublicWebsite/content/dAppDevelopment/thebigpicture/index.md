@@ -1,25 +1,25 @@
 ---
-título: "O quadro geral"
+title: "The big picture"
 date: 2018-04-24T09:27:15-04:00
 weight: 1
 draft: false
 ---
 
-#### Sumário
+#### Summary
 
-O stack do software EOS possui várias ferramentas. Muitos dos tutoriais que vimos explicam como executar tudo em uma única máquina. Isso pode ser confuso porque o leitor tende a perder de vista como tudo se encaixa. 
+The EOS software stack has a number of tools. Many of the tutorials we've seen explain how to run everything on a single machine. This can be confusing becasue the reader tends to lose sight of how it all fits together. 
 
-A imagem abaixo mostra como essas ferramentas são normalmente distribuídas. Os nomes das ferramentas são escritos em letras **VERMELHAS E GRANDES** nas imagens. Aqui está um resumo rápido:
+The below image shows how these tools are normally distributed. The tools names are written in **BIG RED** letters in the images. Here's a quick summary:
 
-* ** eosiocpp ** - Um compilador que permite compilar seu C ++ em um formato que pode ser enviado para a blockchain. 
-* ** cleos ** - Uma ferramenta de linha de comando usada para enviar seus contratos para a blockchain e consultar a blockchain. 
-* ** keosd ** - Um gerenciador de carteira que é executado como um daemon. A ferramenta cleos interage com isso para assinar solicitações (necessárias para que suas solicitações à blockchain possam ser confiáveis). 
-* ** nodeos ** - O software do servidor que executa a blockchain em si.
+* **eosiocpp** - A compiler which allows you to compile your C++ into a format that can be uploaded to the blockchain. 
+* **cleos** - A commandline tool used to upload your contracts to the blockchain and query the blockchain. 
+* **keosd** - A wallet manger which runs as a daemon. The cleos tool interacts with this to sign requests (needed so that your requests to the blockchain can be trusted). 
+* **nodeos** - The server software that runs the blockchain itself.
 
 {{% notice warning %}}
-Ao percorrer o restante deste site, consideramos que você está executando o ** nodeos ** em uma máquina/servidor e usando o restante das ferramentas de outra máquina. Embora isso pareça inconveniente no início, tornará alguns conceitos muito mais claros. 
+As you step through the rest of this site, we assume that you are running **nodeos** on a machine/server and using the rest of the tools from another machine. While this seems inconvenient at 1st, it'll make some concepts a lot clearer. 
 {{% /notice %}}
 
-![quadro Geral] (images/BigPicture.jpeg)
+![big Picture](images/BigPicture.jpeg)
 
 
