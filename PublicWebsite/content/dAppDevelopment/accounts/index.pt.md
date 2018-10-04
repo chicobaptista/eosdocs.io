@@ -11,7 +11,7 @@ Contas precisam ser criadas por outra conta.
 
 Supondo que você tenha seguido as instruções na seção [Carteiras] (../wallets/), agora você deve ter uma carteira em um estado desbloqueado que contenha 3 pares de chaves. 
 
-<font color="red">Verifique se você está usando as chaves públicas que você gerou, não as duas mostradas abaixo</ font>
+<font color="red">Verifique se você está usando as chaves públicas que você gerou, não as duas mostradas abaixo</font>
 ```
 $cleos --wallet-url http://wallet:5555 -u http://server:7777 create account eosio mynewaccount {MyNewAccount owner Public Key} {MyNewAccount active Public Key}
 

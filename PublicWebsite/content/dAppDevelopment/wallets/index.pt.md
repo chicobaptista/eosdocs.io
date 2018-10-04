@@ -20,9 +20,9 @@ draft: false
 Atualmente, existem duas opções de carteira disponíveis:
 
 * Um plugin que você pode iniciar com o servidor nodeos.
-* Um daemon independente que pode ser executado em um servidor separado, independente do servidor nodeos. ** << Vamos usar esta opção **
+* Um daemon independente que pode ser executado em um servidor separado, independente do servidor nodeos. <<**Vamos usar esta opção**
 
-> ** NÃO FORNEÇA O SEGUINTE AO INICIAR O SERVIDOR NODEOS: ** --plugin eosio:: wallet_api_plugin
+> **NÃO FORNEÇA O SEGUINTE AO INICIAR O SERVIDOR NODEOS:** --plugin eosio:: wallet_api_plugin
 
 ### Conceitos importantes
 
@@ -87,9 +87,9 @@ $cleos --wallet-url http://wallet:5555 wallet keys
 ]
 ```
 
-Como você pode ver, há um par de chaves em sua carteira recém-criada. Este é o par de chaves mestre para a única conta inicial, ** eosio **
+Como você pode ver, há um par de chaves em sua carteira recém-criada. Este é o par de chaves mestre para a única conta inicial, **eosio**
 
-** Não confunda a chave mestra acima com as chaves que você adicionará no futuro **
+**Não confunda a chave mestra acima com as chaves que você adicionará no futuro**
 
 ### 3. Carteiras precisam ser abertas {#open}
 
@@ -150,7 +150,7 @@ Note que quando você criou sua carteira usando o "./cleos wallet create" na eta
 
 ### 5. Adicionando chaves {#AddingKeys}
 
-Conforme detalhado na seção [Contas] (../ accounts /), cada conta tem duas permissões, o ** owner ** e o ** active **.
+Conforme detalhado na seção [Contas] (../ accounts /), cada conta tem duas permissões, o **owner** e o **active**.
 
 Portanto, na maioria dos casos, você desejará criar duas chaves para poder associar uma chave a cada permissão (mais sobre isso posteriormente).
 
@@ -211,7 +211,7 @@ password:
 Como dissemos acima, é importante saber qual a chave que você planeja usar para qual finalidade. Quando você armazenar suas chaves, identifique claramente as chaves conforme o exemplo abaixo
 {{% /notice %}}
 
-** Ao rotular nossas novas chaves da seguinte forma, você terá muito menos probabilidade de misturar as chaves à medida que desenvolver.**
+**Ao rotular nossas novas chaves da seguinte forma, você terá muito menos probabilidade de misturar as chaves à medida que desenvolver.**
 
 ```
 
